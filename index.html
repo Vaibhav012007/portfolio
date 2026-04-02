@@ -824,7 +824,7 @@
         const mobileLinks = mobileMenu.querySelectorAll('a');
 
         function toggleMenu() {
-            const isOpen = !mobileMenu.classList.contains('hidden') && parseFloat(mobileMenu.style.opacity || mobileMenu.classList.contains('opacity-100'));
+            const isOpen = !mobileMenu.classList.contains('hidden');
             
             if (isOpen) {
                 mobileMenu.classList.remove('scale-y-100', 'opacity-100');

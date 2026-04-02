@@ -81,6 +81,10 @@
         }
     </script>
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
@@ -88,6 +92,17 @@
         body {
             background-color: #050505;
             overflow-x: hidden;
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .neural-line {
@@ -157,12 +172,12 @@
     <!-- Navigation -->
     <nav
         class="fixed top-0 w-full z-50 bg-[#131313]/60 backdrop-blur-xl transition-all duration-300 ease-in-out shadow-[0_20px_40px_rgba(0,0,0,0.4),0_0_15_rgba(0,240,255,0.05)]">
-        <div class="flex justify-between items-center max-w-[1400px] mx-auto px-12 py-6">
-            <div class="text-xl font-bold tracking-tighter text-[#8ff5ff] font-['Space_Grotesk'] tracking-widest uppercase"
+        <div class="flex justify-between items-center gap-4 lg:gap-8 max-w-[1400px] mx-auto px-6 md:px-12 py-6">
+            <div class="text-xl font-bold tracking-tighter text-[#8ff5ff] font-['Space_Grotesk'] tracking-widest uppercase shrink-0"
                 style="">
                 Vaibhav Dhaka
             </div>
-            <div class="hidden md:flex items-center space-x-8 font-['Space_Grotesk'] tracking-tight capitalize">
+            <div class="hidden md:flex items-center space-x-4 lg:space-x-8 font-['Space_Grotesk'] tracking-tight capitalize nav-links">
                 <a class="text-[#8ff5ff] border-b-2 border-[#8ff5ff] pb-1 transition-all duration-300" href="#home"
                     style="">Home</a>
                 <a class="text-[#adaaaa] hover:text-[#8ff5ff] transition-colors duration-300" href="#projects"
@@ -174,14 +189,14 @@
                 <a class="text-[#adaaaa] hover:text-[#8ff5ff] transition-colors duration-300" href="#contact"
                     style="">Contact</a>
             </div>
-            <div class="flex items-center space-x-6">
-                <a class="flex items-center gap-2 group" href="https://github.com/Vaibhav012007" target="_blank"
+            <div class="flex items-center space-x-4 md:space-x-6">
+                <a class="hidden sm:flex items-center gap-2 group" href="https://github.com/Vaibhav012007" target="_blank"
                     rel="noopener noreferrer">
                     <span
                         class="material-symbols-outlined text-[#8ff5ff] cursor-pointer group-hover:drop-shadow-[0_0_8px_rgba(143,245,255,0.6)] transition-all"
                         style="">Terminal</span>
                     <span
-                        class="text-[10px] font-['JetBrains_Mono'] text-[#8ff5ff] opacity-0 group-hover:opacity-100 transition-opacity"
+                        class="text-[10px] font-['JetBrains_Mono'] text-[#8ff5ff] opacity-0 group-hover:opacity-100 transition-opacity hidden lg:block"
                         style="">GitHub</span>
                 </a>
                 <a class="hidden sm:flex items-center gap-2 group"
@@ -191,13 +206,33 @@
                         class="material-symbols-outlined text-[#8ff5ff] cursor-pointer group-hover:drop-shadow-[0_0_8px_rgba(143,245,255,0.6)] transition-all"
                         style="">hub</span>
                     <span
-                        class="text-[10px] font-['JetBrains_Mono'] text-[#8ff5ff] opacity-0 group-hover:opacity-100 transition-opacity"
+                        class="text-[10px] font-['JetBrains_Mono'] text-[#8ff5ff] opacity-0 group-hover:opacity-100 transition-opacity hidden lg:block"
                         style="">LinkedIn</span>
                 </a>
                 <a href="resume.pdf" target="_blank" rel="noopener noreferrer"
-                    class="bg-primary hover:bg-primary-dim text-on-primary text-center font-bold px-6 py-2 rounded-xl transition-all duration-300 text-sm inline-block"
+                    class="bg-primary hover:bg-primary-dim text-on-primary text-center font-bold px-4 py-2 md:px-6 rounded-xl transition-all duration-300 text-sm inline-block"
                     style="">
-                    View Resume
+                    Resume
+                </a>
+                <button id="mobile-menu-btn" class="md:hidden text-[#8ff5ff] focus:outline-none flex items-center justify-center ml-2">
+                    <span class="material-symbols-outlined text-3xl">menu</span>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-[#131313]/95 backdrop-blur-3xl border-t border-[#8ff5ff]/10 flex-col py-6 shadow-2xl origin-top transition-transform duration-300 transform scale-y-0 opacity-0 md:hidden nav-links">
+            <a class="text-[#8ff5ff] border-l-2 border-[#8ff5ff] pl-6 py-4 text-lg font-['Space_Grotesk'] font-medium" href="#home">Home</a>
+            <a class="text-[#adaaaa] hover:text-[#8ff5ff] hover:bg-white/5 pl-[26px] py-4 text-lg font-['Space_Grotesk'] font-medium transition-colors" href="#projects">Projects</a>
+            <a class="text-[#adaaaa] hover:text-[#8ff5ff] hover:bg-white/5 pl-[26px] py-4 text-lg font-['Space_Grotesk'] font-medium transition-colors" href="#skills">Skills</a>
+            <a class="text-[#adaaaa] hover:text-[#8ff5ff] hover:bg-white/5 pl-[26px] py-4 text-lg font-['Space_Grotesk'] font-medium transition-colors" href="#experience">Experience</a>
+            <a class="text-[#adaaaa] hover:text-[#8ff5ff] hover:bg-white/5 pl-[26px] py-4 text-lg font-['Space_Grotesk'] font-medium transition-colors" href="#contact">Contact</a>
+            
+            <div class="flex items-center gap-6 pl-[26px] pt-6 mt-4 border-t border-white/5">
+                <a class="flex items-center gap-2 text-[#8ff5ff]" href="https://github.com/Vaibhav012007" target="_blank">
+                    <span class="material-symbols-outlined text-xl">Terminal</span>
+                </a>
+                <a class="flex items-center gap-2 text-[#8ff5ff]" href="https://www.linkedin.com/in/vaibhav-dhaka-789967322/" target="_blank">
+                    <span class="material-symbols-outlined text-xl">hub</span>
                 </a>
             </div>
         </div>
@@ -762,8 +797,10 @@
         </div>
     </footer>
     <script>
-        document.addEventListener('scroll', () => {
+        // Data Packet Animation & Reactivity
+        function updateDataPacket() {
             const packet = document.getElementById('data-packet');
+            if(!packet) return;
             const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
 
             const viewportWidth = window.innerWidth;
@@ -774,9 +811,117 @@
             const xBase = (viewportWidth * 0.1) + (scrollPercent * (viewportWidth * 0.7));
 
             packet.style.transform = `translate(${xBase + xOffset}px, ${yBase}px)`;
+        }
+
+        document.addEventListener('scroll', updateDataPacket);
+        window.addEventListener('resize', updateDataPacket);
+        updateDataPacket();
+
+        // Mobile Menu Logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = mobileMenuBtn.querySelector('.material-symbols-outlined');
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+
+        function toggleMenu() {
+            const isOpen = !mobileMenu.classList.contains('hidden') && parseFloat(mobileMenu.style.opacity || mobileMenu.classList.contains('opacity-100'));
+            
+            if (isOpen) {
+                mobileMenu.classList.remove('scale-y-100', 'opacity-100');
+                mobileMenu.classList.add('scale-y-0', 'opacity-0');
+                setTimeout(() => mobileMenu.classList.add('hidden'), 300);
+                menuIcon.textContent = 'menu';
+                mobileMenu.classList.remove('flex');
+            } else {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('flex');
+                void mobileMenu.offsetWidth; // trigger reflow
+                mobileMenu.classList.remove('scale-y-0', 'opacity-0');
+                mobileMenu.classList.add('scale-y-100', 'opacity-100');
+                menuIcon.textContent = 'close';
+            }
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', () => {
+            if (!mobileMenu.classList.contains('hidden')) {
+                toggleMenu();
+            }
+        }));
+
+        // Intersection Observer for Scroll Reactivity
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Optional: stop observing once visible
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Add fade-in-up effect dynamically to key elements
+        document.querySelectorAll('section > div, .bg-surface-container-low').forEach((el, index) => {
+            if(!el.classList.contains('fade-in-up') && !el.closest('nav')) {
+                el.classList.add('fade-in-up');
+                // Stagger transition slightly
+                el.style.transitionDelay = `${(index % 3) * 0.15}s`;
+                observer.observe(el);
+            }
         });
 
-        window.dispatchEvent(new Event('scroll'));
+        // Active State Reactivity in Navigation
+        const sections = document.querySelectorAll('main > section');
+        const navLinksLists = document.querySelectorAll('.nav-links a[href^="#"]');
+
+        function updateActiveNav() {
+            let current = 'home';
+            const scrollY = window.scrollY;
+
+            // Handle edge case for home
+            if (scrollY < 100) {
+                current = 'home';
+            } else {
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 300;
+                    const sectionHeight = section.offsetHeight;
+                    
+                    if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                        current = section.getAttribute('id') || 'home';
+                    }
+                });
+            }
+
+            navLinksLists.forEach(link => {
+                link.classList.remove('text-[#8ff5ff]', 'border-b-2', 'border-[#8ff5ff]', 'pb-1', 'border-l-2', 'pl-6');
+                link.classList.add('text-[#adaaaa]');
+                
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.remove('text-[#adaaaa]');
+                    link.classList.add('text-[#8ff5ff]');
+                    
+                    if (link.parentElement.classList.contains('md:flex')) {
+                        // Desktop
+                        link.classList.add('border-b-2', 'border-[#8ff5ff]', 'pb-1');
+                    } else {
+                        // Mobile
+                        link.classList.add('border-l-2', 'border-[#8ff5ff]', 'pl-6');
+                        link.classList.remove('pl-[26px]');
+                    }
+                } else if (!link.parentElement.classList.contains('md:flex')) {
+                   link.classList.add('pl-[26px]');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', updateActiveNav);
+        updateActiveNav();
     </script>
 </body>
 
